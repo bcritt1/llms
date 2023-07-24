@@ -5,8 +5,7 @@ from transformers import GPT2Tokenizer, GPT2LMHeadModel
 
 # Txt directory
 import os
-user = os.getenv('USER')
-corpusdir = '/scratch/users/{}/corpus/'.format(user)
+corpusdir = '/farmshare/learning/data/emerson/'
 corpus = []
 for infile in os.listdir(corpusdir):
   with open(corpusdir+infile, errors='ignore') as fin:
@@ -132,7 +131,8 @@ output = model.generate(input_ids, attention_mask=torch.ones_like(input_ids), ma
 generated_formulae = [tokenizer.decode(seq, skip_special_tokens=True) for seq in output]
 
 # Write generated formulae to a file
-output_file = "generated_formulae_successful.txt"
+user = os.getenv('USER')
+output_file = "/scratch/users/{}/outputsgenerated_formulae_successful.txt".format(user)
 
 with open(output_file, 'w', encoding='utf-8') as file:
     file.write("Generated Homeric Formulae:\n")

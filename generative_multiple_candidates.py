@@ -5,8 +5,7 @@ from transformers import GPT2Tokenizer, GPT2LMHeadModel
 
 # Txt directory
 import os
-user = os.getenv('USER')
-corpusdir = '/scratch/users/{}/corpus/'.format(user)
+corpusdir = '/farmshare/learning/data/emerson/'.format(user)
 corpus = []
 for infile in os.listdir(corpusdir):
   with open(corpusdir+infile, errors='ignore') as fin:
@@ -117,6 +116,7 @@ for i in range(output.shape[0]):
     generated_candidates.append(tokenizer.decode(output[i], skip_special_tokens=True))
 
 # Write the generated candidates to a text file
-with open('generated_candidates.txt', 'w') as file:
+user = os.getenv('USER')
+with open('/scratch/users/{}/outputs/generated_candidates.txt'.format(user), 'w') as file:
     for candidate in generated_candidates:
         file.write(candidate + '\n')

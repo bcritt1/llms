@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 #SBATCH --job-name=greekReg
-#SBATCH --output=/home/users/%u/out/greekREg.%j.out
-#SBATCH --error=/home/users/%u/err/greekReg.%j.err
+#SBATCH --output=/home/%u/out/greekREg.%j.out
+#SBATCH --error=/home/%u/err/greekReg.%j.err
 #SBATCH --partition=gpu
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
@@ -10,7 +10,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH --mem=64GB
 
-module load python/3.9.0
+mkdir /home/$USER/out home/$USER/err /scratch/users/$USER/outputs
 pip3 install transformers
 pip3 install --pre torch -f https://download.pytorch.org/whl/nightly/cpu/torch_nightly.html
 python3 generative_multiple_candidates.py
