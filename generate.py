@@ -1,4 +1,13 @@
-# utils.py
+"""
+Authors: Brad Rittenhouse, Annie K. Lamar
+Stanford Research Computing Center
+
+Coordinating files:
+generate.sbatch
+
+Sample corpus files found in corpus directory.
+Sample prompt file found in prompt.txt.
+"""
 
 import pandas as pd
 import os
