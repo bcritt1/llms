@@ -130,6 +130,7 @@ def generate_text_from_prompts(model, prompt_file, output_file, pretrained_model
         for generated in generated_from_prompt:
             all_generated_text.append(generated)
     generated_df = pd.DataFrame(all_generated_text, columns=generated_text_columns)
+    print(generated_df)
     generated_df.to_csv(output_file)
 
 
@@ -137,7 +138,7 @@ def main():
     user = os.getenv('USER')
     corpus_dir = '/scratch/users/{}/llm_test/corpus/'.format(user)
     prompt_file = '/scratch/users/{}/llm_test/prompt.txt'.format(user)
-    output_file = '/scratch/users/{}/llm_test/output.txt'.format(user)
+    output_file = '/scratch/users/{}/llm_test/output.csv'.format(user)
     print("Expecting to find corpus files in " + corpus_dir)
     print("Expecting to find prompt file at " + prompt_file)
 
@@ -153,7 +154,7 @@ def main():
     sequence_length_model = 512
     # generate settings
     number_responses_to_generate = 5
-    maximum_response_length = 10
+    maximum_response_length = 50
 
     print(
         "Training model with the following parameters. To change these parameters, modify the main function of "
